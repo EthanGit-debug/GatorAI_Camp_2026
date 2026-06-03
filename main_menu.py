@@ -25,8 +25,8 @@ class MainMenu:
 
         # Timer for input delay
         self.input_timer = Timer(200)
-        # Settings menu
-        self.settings_menu = SettingsMenu(camera_change_callback)
+        # Settings menu (created lazily when first needed)
+        self.settings_menu = None
 
     def display(self):
         self.display_surface.fill("black")
@@ -36,6 +36,9 @@ class MainMenu:
         elif self.state == "credits":
             self.display_credits()
         elif self.state == "settings":
+            # Create settings menu lazily if needed
+            if self.settings_menu is None:
+                self.settings_menu = SettingsMenu(self.camera_change_callback)
             # Settings menu handles its own display
             result = self.settings_menu.update()
             if result == "back":

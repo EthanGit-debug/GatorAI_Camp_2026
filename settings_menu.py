@@ -32,6 +32,7 @@ class SettingsMenu:
 
         # Camera detection will only run when the player interacts with camera settings
         self.available_cameras = None
+        self.cameras_loaded_once = False  # Prevent camera detection on first frame
 
         # Load corn graphic for selection indicator
         import os
@@ -154,7 +155,19 @@ class SettingsMenu:
     def draw_camera_control(self, option, y_pos, is_selected):
         """Draw camera selection control"""
         current_camera_index = game_settings.get_camera_index()
-        cameras = self.load_available_cameras()
+        
+        # Skip loading cameras on the very first frame to prevent hangs
+        if not self.cameras_loaded_once:
+            cameras = [
+                {
+                    "index": current_camera_index,
+                    "name": game_settings.get_camera_name(current_camera_index),
+                }
+            ]
+            self.cameras_loaded_once = True
+        else:
+            cameras = self.load_available_cameras()
+        
         current_camera = next(
             (
                 cam
@@ -172,7 +185,7 @@ class SettingsMenu:
         self.display_surface.blit(camera_surf, camera_rect)
 
         # Show arrows if more than one camera available
-        if len(self.available_cameras) > 1 and is_selected:
+        if len(cameras) > 1 and is_selected:
             arrow_color = "Yellow" if is_selected else "Gray"
             # Left arrow
             left_arrow = self.font.render("<", True, arrow_color)
@@ -228,6 +241,8 @@ class SettingsMenu:
                 self.input_timer.activate()
             elif current_option["type"] == "camera":
                 current_index = game_settings.get_camera_index()
+                # Load cameras when player tries to change them
+                self.cameras_loaded_once = True
                 camera_indices = [cam["index"] for cam in self.load_available_cameras()]
                 if current_index in camera_indices:
                     current_pos = camera_indices.index(current_index)
