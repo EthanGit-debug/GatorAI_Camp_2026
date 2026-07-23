@@ -120,8 +120,8 @@ APPLE_POS = {
 
 # Plant growth speeds (lower numbers = faster growth)
 GROW_SPEED = {
-    "corn": 1,  # Corn grows relatively fast (Default: 0.1)
-    "tomato": 1,  # Tomatoes grow a bit slower (Default: 0.07)
+    "corn": 150,  # Corn grows relatively fast (Default: 0.1)
+    "tomato": 150,  # Tomatoes grow a bit slower (Default: 0.07)
 }
 
 # How much growth a single night's sleep gives every plant. Sleeping skips a
@@ -129,7 +129,7 @@ GROW_SPEED = {
 DAY_GROWTH = 10  # Growth added after sleeping one day (Default: 10)
 
 # @STUDENT-EDIT-Day2-2: Change the player's movement speed (PLAYER_SPEED)
-PLAYER_SPEED = 400  # Player movement speed (Default: 200)
+PLAYER_SPEED = 1500  # Player movement speed (Default: 200)
 
 # =============================================================================
 # ECONOMIC SYSTEM - PRICES AND VALUES
@@ -173,5 +173,15 @@ NPC_DATA = {
             "I'm Robin, a helper NPC created using Python classes.",
             "Try editing settings.py to change what I say, or create your own custom NPC!"
         ]  # Default starter dialogue lines
+    },
+"Donald Trump": {
+        "pos": (900, 900),  # Default spawn position
+        "graphic": "C:\\Users\\guest.101034\\Downloads\\ChatGPT Image Jul 21, 2026, 11_26_49 AM (1).png",  # Placeholder using existing asset (Default: "graphics/objects/merchant.png")
+        "dialogue": [
+            "Hi there! Welcome to PyDew Valley!",
+            "My fellow Americans,Tonight, I speak to you from a room that has witnessed the history of our great trials and our greatest triumphs. We live in a time of rapid change, where new technologies and shifting global dynamics present both immense challenges and unprecedented opportunities.Our economy is entering a new chapter. We are seeing factories reopen, small businesses thrive on our main streets, and American innovation leading the world in clean energy and advanced manufacturing. But growth means nothing if it does not reach every household. That is why our immediate focus is lowering the daily cost of living for working families, ensuring that housing is affordable, and making sure that hard work guarantees a fair wage.Progress, however, is not measured solely by economic data. It is measured by the strength of our communities. True security means knowing our neighborhoods are safe, our schools are equipped to prepare our children for the future, and our healthcare system is accessible to all.We know the path forward will not be free of obstacles. Disagreements are a natural part of a vibrant democracy. Yet, our history proves that we are at our best not when we yield to division, but when we find common purpose. The challenges of our era demand that we look past partisan lines to deliver real, lasting solutions.As we look toward the horizon, let us move forward with confidence, resilience, and an unshakeable belief in the promise of our nation.Thank you, God bless you, and may God bless the United States of America.",
+            "Try editing settings.py to change what I say, or create your own country!"
+        ]  # Default starter dialogue lines
     }
 }
+
